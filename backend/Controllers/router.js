@@ -10,7 +10,7 @@ routerss.post("/register", async (req, res) => {
     res.status(500).send(error);
   }
 });
-routersss.post("/login", async (req, res) => {
+routerss.post("/login", async (req, res) => {
   try {
     const userDatafinal = await UserLogin.create(req.body);
     return res.status(200).send(userDatafinal);
@@ -19,4 +19,4 @@ routersss.post("/login", async (req, res) => {
   }
 });
 
-export default routersss;
+module.exports = routerss;

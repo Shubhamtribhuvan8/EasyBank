@@ -1,11 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const connection = require("./DB/db");
+const routerss = require("./Controllers/router");
 const app = express();
 // app.use(express.json());
 dotenv.config();
-// const router = require('./Routes/router');
-// app.use('/api', router);
+app.use("/api", routerss);
 const port = process.env.PORT || 8000;
 app.listen(port, () => {
   try {
