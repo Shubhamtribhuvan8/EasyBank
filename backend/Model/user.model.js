@@ -5,7 +5,7 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   //   accessToken: { type: String, required: true },
-  role: { type: String, enum: ["customer", "banker"], required: true },
+  // role: { type: String, enum: ["customer", "banker"], required: true },
   createdAt: { type: Date, default: Date.now },
 });
 

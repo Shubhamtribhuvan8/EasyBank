@@ -1,6 +1,6 @@
 const experess = require("express");
 const routerss = experess.Router();
-const UserLogin = require("../Model/user.model");
+const UserLogin = require("../Model/login.model");
 
 routerss.post("/register", async (req, res) => {
   try {
@@ -10,6 +10,7 @@ routerss.post("/register", async (req, res) => {
     res.status(500).send(error);
   }
 });
+
 routerss.post("/login", async (req, res) => {
   try {
     const userDatafinal = await UserLogin.create(req.body);
