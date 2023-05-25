@@ -32,7 +32,10 @@ function Login() {
       return;
     }
     try {
-      let tokens = await axios.post("http://localhost:8080/bank/login", data);
+      let tokens = await axios.post(
+        "https://precious-fashion-dog.cyclic.app/bank/login",
+        data
+      );
       localStorage.setItem("papa", tokens.data.user.token);
       const successs = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"

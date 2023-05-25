@@ -40,7 +40,10 @@ function BankerSignup() {
     }
 
     try {
-      await axios.post("http://localhost:8080/bank/register", data);
+      await axios.post(
+        "https://precious-fashion-dog.cyclic.app/bank/register",
+        data
+      );
       toast.success("Registered!");
       const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"

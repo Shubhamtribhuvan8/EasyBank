@@ -11,7 +11,7 @@ export default function TransactionPage() {
     const token = localStorage.getItem("papa");
     if (token) {
       axios
-        .post("http://localhost:8080/bank/verify", { token })
+        .post("https://precious-fashion-dog.cyclic.app/bank/verify", { token })
         .then((response) => {
           const user = response.data.user;
           setUser(user);
@@ -25,7 +25,7 @@ export default function TransactionPage() {
   useEffect(() => {
     if (user) {
       axios
-        .get("http://localhost:8080/account/details")
+        .get("https://precious-fashion-dog.cyclic.app/account/details")
         .then((response) => {
           const accountDetails = response.data;
           let isUserFound = false;
@@ -54,7 +54,7 @@ export default function TransactionPage() {
   const handleDeposit = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/account/deposit",
+        "https://precious-fashion-dog.cyclic.app/account/deposit",
         {
           name: user.name,
           amount: depositAmount,
@@ -71,7 +71,7 @@ export default function TransactionPage() {
   const handleWithdraw = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:8080/account/withdraw",
+        "https://precious-fashion-dog.cyclic.app/account/withdraw",
         {
           name: user.name,
           amount: withdrawAmount,
@@ -81,7 +81,7 @@ export default function TransactionPage() {
       toast.success("Withdraw Done!");
     } catch (error) {
       console.error(error);
-      toast.error("Something went Wrong!");
+      toast.error("Insufficient funds!");
     }
   };
 

@@ -9,7 +9,7 @@ export default function Alltransaction(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8080/account/details")
+      .get("https://precious-fashion-dog.cyclic.app/account/details")
       .then((response) => {
         setData(response.data);
         console.log(response.data);

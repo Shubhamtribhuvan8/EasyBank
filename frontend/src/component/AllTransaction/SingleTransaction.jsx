@@ -8,7 +8,7 @@ export default function SingleTransaction() {
   const { transactionId } = useParams();
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/account/${transactionId}`)
+      .get(`https://precious-fashion-dog.cyclic.app/account/${transactionId}`)
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -36,11 +36,12 @@ export default function SingleTransaction() {
           margin: "10px",
           fontSize: "30px",
           fontWeight: "bold",
+          textAlign: "initial",
         }}
       >
         <ul>
           <p>Transaction ID: {data._id}</p>
-          <p>Name: {data.name}</p>
+          <p>Account Holder Name: {data.name}</p>
           <p>Account Balance: {data.balance}.00 Rs</p>
         </ul>
       </div>
