@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
+import Logout from "../BankLogin/Logout";
 export default function TransactionPage() {
   const [user, setUser] = useState(null);
   const [data, setData] = useState([]);
@@ -87,6 +88,7 @@ export default function TransactionPage() {
   return (
     <div>
       <h4>Transaction Page</h4>
+      <Logout />
       {data && (
         <div>
           <h5>Balance: {data.balance}.00 Rs</h5>
