@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Button } from "@mui/material";
-
 export default function TransactionPage() {
   const [user, setUser] = useState(null);
   const [data, setData] = useState([]);
@@ -29,7 +28,6 @@ export default function TransactionPage() {
         .then((response) => {
           const accountDetails = response.data;
           let isUserFound = false;
-
           for (let i = 0; i < accountDetails.length; i++) {
             if (user.name === accountDetails[i].name) {
               setData(accountDetails[i]);
@@ -48,7 +46,6 @@ export default function TransactionPage() {
         });
     }
   }, [user]);
-
   const [depositAmount, setDepositAmount] = useState("");
   const [withdrawAmount, setWithdrawAmount] = useState("");
   // eslint-disable-next-line no-unused-vars
@@ -72,11 +69,15 @@ export default function TransactionPage() {
   };
   const handleWithdraw = async () => {
     try {
-      const response = await axios.post("/withdraw", {
-        userId: "userId_here",
-        amount: withdrawAmount,
-      });
-      setBalance(response.data);
+      const response = await axios.post(
+        "http://localhost:8080/account/withdraw",
+        {
+          name: user.name,
+          amount: withdrawAmount,
+        }
+      );
+      setBalance(response.data.balance);
+      toast.success("Withdraw Done!");
     } catch (error) {
       console.error(error);
       toast.error("Something went Wrong!");
@@ -85,7 +86,7 @@ export default function TransactionPage() {
 
   return (
     <div>
-      <h6>Transaction Page</h6>
+      <h4>Transaction Page</h4>
       {data && (
         <div>
           <h5>Balance: {data.balance}.00 Rs</h5>
@@ -100,9 +101,9 @@ export default function TransactionPage() {
         </div>
       )}
       <div>
-        <label htmlFor="depositAmount">Deposit Amount:</label>
-        <br />
+        <h4>Deposit Amount:</h4>
         <input
+          style={{ width: "11rem" }}
           type="number"
           id="depositAmount"
           value={depositAmount}
@@ -115,9 +116,9 @@ export default function TransactionPage() {
       </div>
       <br />
       <div>
-        <label htmlFor="withdrawAmount">Withdraw Amount:</label>
-        <br />
+        <h4>Withdraw Amount:</h4>
         <input
+          style={{ width: "11rem" }}
           type="number"
           id="withdrawAmount"
           value={withdrawAmount}

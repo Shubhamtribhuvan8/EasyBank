@@ -38,16 +38,26 @@ AccountRouter.get("/details", async (req, res) => {
 AccountRouter.post("/withdraw", async (req, res) => {
   try {
     const { name, amount } = req.body;
-    const user = await Account.find(name);
+    if (isNaN(amount)) {
+      return res.status(400).json({ message: "Invalid amount" });
+    }
+
+    const user = await Account.findOne({ name });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-    if (amount > user.balance) {
-      return res.status(400).json({ message: "Insufficient Funds" });
+
+    if (user.balance < parseFloat(amount)) {
+      return res.status(400).json({ message: "Insufficient balance" });
     }
-    user.balance -= amount;
+
+    user.balance -= parseFloat(amount);
     await user.save();
-    return res.json(user);
+
+    return res.json({
+      message: "Withdrawal successful",
+      balance: user.balance,
+    });
   } catch (error) {
     console.error("Error during withdrawal:", error);
     return res.status(500).json({ message: "Internal Server Error" });
