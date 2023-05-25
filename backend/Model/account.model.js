@@ -8,12 +8,6 @@ const accountschema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  transactions: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Transaction",
-    },
-  ],
 });
 
 const Account = mongoose.model("Account", accountschema);

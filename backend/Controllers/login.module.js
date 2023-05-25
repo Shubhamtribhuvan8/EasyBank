@@ -5,7 +5,6 @@ dotenv.config();
 
 async function register(name, email, password) {
   let userFlag = await User.findOne({ email });
-
   if (userFlag) {
     throw new Error("User already exists");
   }

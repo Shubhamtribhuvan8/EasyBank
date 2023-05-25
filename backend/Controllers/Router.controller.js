@@ -49,23 +49,18 @@ LoginRouter.post("/login", async (req, res) => {
     });
   }
 });
-function decryptToken(token) {
-  try {
-    const decryptedToken = jwt.verify(token, process.env.JWT_SECRET);
-    return decryptedToken;
-  } catch (error) {
-    throw new Error("Token decryption failed");
-  }
-}
-
 LoginRouter.post("/verify", async (req, res) => {
   try {
-    const { token } = req.body;
-    const decryptedToken = decryptToken(token);
-    const user = await Verify(decryptedToken);
+    let { token } = req.body;
+    let user = await Verify(token);
+    console.log(user);
     res.send({ user });
   } catch (error) {
-    res.status(500).send({ error: error.message });
+    console.log(error);
+    res.status(500).send({
+      error: error,
+    });
   }
 });
+
 module.exports = LoginRouter;
