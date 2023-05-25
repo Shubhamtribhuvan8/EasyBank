@@ -41,19 +41,15 @@ AccountRouter.post("/withdraw", async (req, res) => {
     if (isNaN(amount)) {
       return res.status(400).json({ message: "Invalid amount" });
     }
-
     const user = await Account.findOne({ name });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
     if (user.balance < parseFloat(amount)) {
       return res.status(400).json({ message: "Insufficient balance" });
     }
-
     user.balance -= parseFloat(amount);
     await user.save();
-
     return res.json({
       message: "Withdrawal successful",
       balance: user.balance,
