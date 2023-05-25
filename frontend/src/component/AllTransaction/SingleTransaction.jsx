@@ -7,11 +7,11 @@ export default function SingleTransaction() {
   const [data, setData] = useState([]);
   const { transactionId } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8080/transaction-details/${transactionId}`)
+    fetch(`http://localhost:8080/account/transactionId/${transactionId}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        setData(data);
+        console.log(data.data);
+        setData(data.data);
       });
   }, [transactionId]);
   const navigate = useNavigate();
@@ -27,12 +27,12 @@ export default function SingleTransaction() {
         Home Page
       </Button>
       <ul>
-        {data.map((transaction) => (
-          <li key={transaction._id}>
-            <p>Transaction ID: {transaction._id}</p>
-            <p>Name: {transaction.name}</p>
-            <p>Amount: {transaction.amount}</p>
-            <p>Date: {transaction.date}</p>
+        {data.map((e) => (
+          <li key={e._id}>
+            <p>Transaction ID: {e._id}</p>
+            <p>Name: {e.name}</p>
+            <p>Amount: {e.amount}</p>
+            <p>Date: {e.date}</p>
           </li>
         ))}
       </ul>

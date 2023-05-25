@@ -37,7 +37,7 @@ export default function Routers() {
           }
         />
         <Route
-          path="/transaction-details"
+          path="/transaction-details/"
           element={
             <h1>
               <SingleTransaction />

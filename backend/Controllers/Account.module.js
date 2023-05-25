@@ -34,6 +34,20 @@ AccountRouter.get("/details", async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 });
+AccountRouter.get("/transactionId:", async (req, res) => {
+  try {
+    const transactionId = req.params.transactionId;
+    const account = await Account.findOne({ transactionId });
+    if (!account) {
+      return res.status(404).json({ message: "Account not found" });
+    }
+
+    return res.json(account);
+  } catch (error) {
+    console.error("Error finding account:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 
 AccountRouter.post("/withdraw", async (req, res) => {
   try {
