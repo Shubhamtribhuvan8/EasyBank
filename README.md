@@ -1,6 +1,6 @@
 # EasyBank
 ## [Deployment Link](https://easybank-rouge.vercel.app)
-## [Implementation  Video](https://drive.google.com/file/d/15EFToUzwGfagftc4eSZV1Up-u97dzawR/view?usp=share_link)
+## [Implementation  Video]()
 
 ## What it is ?
 ![1](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/405fc625-ed28-419b-8180-e69bed8c37ff)
