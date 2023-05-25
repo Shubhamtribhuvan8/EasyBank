@@ -87,52 +87,76 @@ export default function TransactionPage() {
 
   return (
     <div>
-      <h4>Transaction Page</h4>
-      <Logout />
-      {data && (
-        <div>
-          <h5>Balance: {data.balance}.00 Rs</h5>
-          <h5>After Deposit: {balanced}.00 Rs</h5>
-        </div>
-      )}
-
+      <h2>Transaction Page</h2>
       {user && (
-        <div>
-          <h6>Name: {user.name}</h6>
-          <h6>Email: {user.email}</h6>
+        <div
+          style={{
+            display: "flex",
+            gap: "92px",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h5>Account Holder Name: {user.name}</h5>
+          <h5>Account Holder Email: {user.email}</h5>
         </div>
       )}
-      <div>
-        <h4>Deposit Amount:</h4>
-        <input
-          style={{ width: "11rem" }}
-          type="number"
-          id="depositAmount"
-          value={depositAmount}
-          onChange={(e) => setDepositAmount(e.target.value)}
-        />
+      {data && (
+        <div
+          style={{
+            boxShadow: "0 0 10px black",
+            padding: "10px",
+            margin: "10px",
+          }}
+        >
+          <h4>Balance: {data.balance}.00 Rs</h4>
+          <h4>After Deposit: {balanced}.00 Rs</h4>
+        </div>
+      )}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "12px",
+        }}
+      >
+        <div>
+          <h4>Deposit Amount:</h4>
+          <input
+            style={{ width: "11rem", fontSize: "21px" }}
+            type="number"
+            id="depositAmount"
+            placeholder="Deposit Amount"
+            value={depositAmount}
+            onChange={(e) => setDepositAmount(e.target.value)}
+          />
+          <br />
+          <Button onClick={handleDeposit} variant="contained">
+            Deposit
+          </Button>
+        </div>
         <br />
-        <Button onClick={handleDeposit} variant="contained">
-          Deposit
-        </Button>
+        <div>
+          <h4>Withdraw Amount:</h4>
+          <input
+            style={{ width: "11rem", fontSize: "21px" }}
+            type="number"
+            id="withdrawAmount"
+            placeholder="Withdraw Amount"
+            value={withdrawAmount}
+            onChange={(e) => setWithdrawAmount(e.target.value)}
+          />
+          <br />
+          <Button onClick={handleWithdraw} variant="contained">
+            Withdraw
+          </Button>
+          <br />
+        </div>
       </div>
+
       <br />
-      <div>
-        <h4>Withdraw Amount:</h4>
-        <input
-          style={{ width: "11rem" }}
-          type="number"
-          id="withdrawAmount"
-          value={withdrawAmount}
-          onChange={(e) => setWithdrawAmount(e.target.value)}
-        />
-        <br />
-        <Button onClick={handleWithdraw} variant="contained">
-          Withdraw
-        </Button>
-        <br />
-      </div>
-      <br />
+      <Logout />
     </div>
   );
 }

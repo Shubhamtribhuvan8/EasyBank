@@ -50,9 +50,9 @@ function BankerLogin() {
 
   return (
     <>
-      <h1>Banker Login</h1>
       <Button variant="dark" onClick={() => setShow(true)}>
-        <PersonIcon />
+        <PersonIcon style={{ fontSize: "40px" }} />
+        <p>Banker Login</p>
       </Button>
 
       <Modal

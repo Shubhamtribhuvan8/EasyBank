@@ -1,41 +1,49 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@mui/material";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 export default function SingleTransaction() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
   const { transactionId } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:8080/account/transactionId/${transactionId}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.data);
-        setData(data.data);
+    axios
+      .get(`http://localhost:8080/account/${transactionId}`)
+      .then((response) => {
+        setData(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   }, [transactionId]);
+
   const navigate = useNavigate();
-  const Homepage = () => {
-    setTimeout(() => {
-      navigate("/alltransactions");
-    }, 1000);
-  };
+
   return (
     <div>
       <h1>Transaction Details</h1>
-      <Button variant="contained" onClick={Homepage}>
+      <Button variant="contained" onClick={() => navigate("/alltransactions")}>
         Home Page
       </Button>
-      <ul>
-        {data.map((e) => (
-          <li key={e._id}>
-            <p>Transaction ID: {e._id}</p>
-            <p>Name: {e.name}</p>
-            <p>Amount: {e.amount}</p>
-            <p>Date: {e.date}</p>
-          </li>
-        ))}
-      </ul>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          boxShadow: "0 0 10px black",
+          padding: "10px",
+          margin: "10px",
+          fontSize: "30px",
+          fontWeight: "bold",
+        }}
+      >
+        <ul>
+          <p>Transaction ID: {data._id}</p>
+          <p>Name: {data.name}</p>
+          <p>Account Balance: {data.balance}.00 Rs</p>
+        </ul>
+      </div>
     </div>
   );
 }

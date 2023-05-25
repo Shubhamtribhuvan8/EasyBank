@@ -31,7 +31,6 @@ function Login() {
       toast.error("Invalid Email!");
       return;
     }
-
     try {
       let tokens = await axios.post("http://localhost:8080/bank/login", data);
       localStorage.setItem("papa", tokens.data.user.token);
@@ -53,10 +52,9 @@ function Login() {
   }
   return (
     <>
-      <h1>EasyBank</h1>
-      <h1>Custmor Login/Registration</h1>
       <Button variant="dark" onClick={() => setShow(true)}>
-        <AccountCircleIcon />
+        <AccountCircleIcon style={{ fontSize: "40px" }} />
+        <p>Customer Login</p>
       </Button>
 
       <Modal
@@ -70,7 +68,7 @@ function Login() {
             id="example-custom-modal-styling-title"
             style={{ textAlign: "center" }}
           >
-            Custmor Login
+            Customer Login
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

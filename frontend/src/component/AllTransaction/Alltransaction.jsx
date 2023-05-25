@@ -4,7 +4,7 @@ import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-export default function Alltransaction() {
+export default function Alltransaction(props) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -29,20 +29,34 @@ export default function Alltransaction() {
   };
   return (
     <div>
-      <h1>All Transactions here</h1>
+      <h1>All Transactions</h1>
       <Button variant="contained" onClick={Homepage}>
         Home Page
       </Button>
-      {data.map((transaction) => (
-        <div key={transaction._id}>
-          <Link to={`/transaction-details/${transaction._id}`}>
-            <Button variant="outlined">
-              <p>Name: {transaction.name}</p>
-            </Button>
-          </Link>
-          <hr />
-        </div>
-      ))}
+      <div
+        style={{
+          margin: "50px",
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+        }}
+      >
+        {data.map((transaction) => (
+          <div
+            key={transaction._id}
+            style={{
+              boxShadow: "0 0 10px black",
+              padding: "10px",
+              margin: "10px",
+            }}
+          >
+            <p>{transaction.name}</p>
+            <Link to={`/transaction-details/${transaction._id}`}>
+              <Button variant="outlined">Details</Button>
+            </Link>
+            <hr />
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

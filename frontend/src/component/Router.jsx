@@ -1,11 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Login from "./BankLogin/Login";
-// import Signup from "./BankLogin/Signup";
 import Transactions from "./TransactionPage/Transactions";
-import BankerLogin from "./BankerLogin/BankerLogin";
 import Alltransaction from "./AllTransaction/Alltransaction";
 import SingleTransaction from "./AllTransaction/SingleTransaction";
+import BankerLogin from "./BankerLogin/BankerLogin";
+import Login from "./BankLogin/Login";
 export default function Routers() {
   return (
     <div>
@@ -14,9 +13,9 @@ export default function Routers() {
           path="/"
           element={
             <h1>
-              <Login />
-              <BankerLogin />
-              {/* <Signup /> */}
+              <br />
+              <br />
+              <Login /> <BankerLogin />
             </h1>
           }
         />
@@ -37,12 +36,8 @@ export default function Routers() {
           }
         />
         <Route
-          path="/transaction-details/"
-          element={
-            <h1>
-              <SingleTransaction />
-            </h1>
-          }
+          path="/transaction-details/:transactionId"
+          element={<SingleTransaction />}
         />
       </Routes>
     </div>
