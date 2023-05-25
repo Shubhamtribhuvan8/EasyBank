@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export default function Logout() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ export default function Logout() {
     setTimeout(() => {
       navigate("/");
     }, 2000);
+    toast.success("Logout successful!");
   };
 
   return (

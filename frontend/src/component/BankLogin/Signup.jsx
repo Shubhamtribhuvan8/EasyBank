@@ -62,7 +62,7 @@ function Signup() {
             id="example-custom-modal-styling-title"
             style={{ textAlign: "center" }}
           >
-            Create a Account
+            Create a Account in EasyBank
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>

@@ -47,9 +47,12 @@ function Login() {
   }
   return (
     <>
+      <h1>EasyBank</h1>
+      <h1>Custmor Login/Registration</h1>
       <Button variant="dark" onClick={() => setShow(true)}>
         <AccountCircleIcon />
       </Button>
+
       <Modal
         show={show}
         onHide={() => setShow(false)}
@@ -61,7 +64,7 @@ function Login() {
             id="example-custom-modal-styling-title"
             style={{ textAlign: "center" }}
           >
-            Login
+            Custmor Login
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
