@@ -11,7 +11,7 @@ export default function SingleTransaction() {
       .get(`https://precious-fashion-dog.cyclic.app/account/${transactionId}`)
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

@@ -12,7 +12,7 @@ export default function Alltransaction(props) {
       .get("https://precious-fashion-dog.cyclic.app/account/details")
       .then((response) => {
         setData(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch((error) => {
         console.log(error);

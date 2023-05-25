@@ -55,7 +55,11 @@ function Login() {
   }
   return (
     <>
-      <Button variant="dark" onClick={() => setShow(true)}>
+      <Button
+        variant="dark"
+        style={{ backgroundColor: "darkmagenta" }}
+        onClick={() => setShow(true)}
+      >
         <AccountCircleIcon style={{ fontSize: "40px" }} />
         <p>Customer Login</p>
       </Button>

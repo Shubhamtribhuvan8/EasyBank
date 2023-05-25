@@ -32,7 +32,7 @@ export default function TransactionPage() {
           for (let i = 0; i < accountDetails.length; i++) {
             if (user.name === accountDetails[i].name) {
               setData(accountDetails[i]);
-              console.log(accountDetails[i]);
+              // console.log(accountDetails[i]);
               isUserFound = true;
               break;
             }

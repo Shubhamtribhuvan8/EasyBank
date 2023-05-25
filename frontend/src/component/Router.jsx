@@ -13,6 +13,16 @@ export default function Routers() {
           path="/"
           element={
             <h1>
+              <div className="marquee-container">
+                <div className="marquee-content">
+                  <p>
+                    EasyBank never asks for your Card/PIN/OTP/CVV details on
+                    phone, message or email. Please do not click on links
+                    received on your email or mobile asking your Bank/Card
+                    details
+                  </p>
+                </div>
+              </div>
               <br />
               <br />
               <Login /> <BankerLogin />

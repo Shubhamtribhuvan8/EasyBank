@@ -53,7 +53,11 @@ function BankerLogin() {
 
   return (
     <>
-      <Button variant="dark" onClick={() => setShow(true)}>
+      <Button
+        variant="dark"
+        style={{ backgroundColor: "darkmagenta" }}
+        onClick={() => setShow(true)}
+      >
         <PersonIcon style={{ fontSize: "40px" }} />
         <p>Banker Login</p>
       </Button>
