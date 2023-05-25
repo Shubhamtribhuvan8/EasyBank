@@ -20,6 +20,18 @@ export default function TransactionPage() {
     }
   }, []);
 
+  const fetchData = () => {
+    axios
+      .get("/getUser")
+      .then((response) => {
+        const user = response.data;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <div>
       <h1>Transaction Page</h1>
@@ -29,6 +41,7 @@ export default function TransactionPage() {
           <p>Email: {user.email}</p>
         </div>
       )}
+      <button onClick={fetchData}>Fetch User Data</button>
     </div>
   );
 }
