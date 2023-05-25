@@ -19,10 +19,9 @@ LoginRouter.post("/register", async (req, res) => {
     });
   }
 });
-
 LoginRouter.get("/getUser", async (req, res) => {
   try {
-    let { email } = req.body;
+    let { email } = req.query;
     let user = await getUser(email);
     console.log(user);
     res.send(user);

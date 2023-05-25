@@ -1,46 +1,54 @@
-const UserLogin = require("../Model/user.model");
+const User = require("../Model/user.model");
 const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
+
 async function register(name, email, password) {
-  let userFlag = await UserLogin.findOne({ email });
+  let userFlag = await User.findOne({ email });
 
   if (userFlag) {
-    return new Error("User already exist");
+    throw new Error("User already exists");
   }
 
-  let obj = {
+  let newUser = new User({
     name,
     email,
     password,
-  };
+  });
 
-  let user = await UserLogin.create(obj);
-  let dta = user.toJSON();
-  delete dta.password;
-  return dta;
+  let savedUser = await newUser.save();
+
+  let userObj = savedUser.toJSON();
+  delete userObj.password;
+  return userObj;
 }
-
 async function login(email, password) {
-  let user = await UserLogin.findOne({ email: email });
+  let user = await User.findOne({ email });
+
   if (!user) {
-    throw new Error("User does not Exist");
+    throw new Error("User does not exist");
   }
-  if (user.password.localeCompare(password)) {
-    throw new Error("User password is Wrong");
+
+  console.log("Stored password:", user.password);
+  console.log("Provided password:", password);
+
+  if (user.password !== password) {
+    throw new Error("Incorrect password");
   }
+
   let obj = {
     _id: user._id,
     name: user.name,
     email: user.email,
   };
-  let token = genrateToken(obj);
-  let dta = user.toJSON();
-  delete dta.password;
-  console.log(dta);
+
+  let token = generateToken(obj);
+  let userObj = user.toJSON();
+  delete userObj.password;
+
   return {
     token,
-    user: dta,
+    user: userObj,
   };
 }
 
@@ -49,17 +57,21 @@ async function Verify(token) {
   return user;
 }
 
-function genrateToken(payload) {
+function generateToken(payload) {
   let token = jwt.sign(payload, process.env.JWT_SECRET);
   return token;
 }
 
 async function getUser(email) {
-  let user = await UserLogin.findOne({ email });
-  console.log(user);
-  let dta = user.toJSON();
-  delete dta.password;
-  return dta;
+  let user = await User.findAll({ email });
+  if (!user) {
+    throw new Error("User not found");
+  }
+  let userObj = user ? user.toObject() : null;
+  if (userObj) {
+    delete userObj.password;
+  }
+  return userObj;
 }
 
 module.exports = { register, login, Verify, getUser };
