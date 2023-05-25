@@ -5,7 +5,7 @@ import axios from "axios";
 import TextField from "@mui/material/TextField";
 import { toast } from "react-toastify";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-function Signup() {
+function BankerSignup() {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,26 +30,31 @@ function Signup() {
       password: password,
     };
 
-    if (!email.endsWith("@gmail.com")) {
-      toast.error("Only Gmail accounts are allowed for registration!");
+    if (!email.endsWith("@yahoo.com")) {
+      toast.error("Please provide a valid Yahoo email address!");
+      const warningSound = new Audio(
+        "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a"
+      );
+      warningSound.play();
       return;
     }
 
     try {
       await axios.post("http://localhost:8080/bank/register", data);
       toast.success("Registered!");
-      const successs = new Audio(
+      const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
       );
-      successs.play();
+      successSound.play();
     } catch (error) {
-      toast.error("Registration failed!");
+      toast.error("Wrong Credentials!");
       const warningSound = new Audio(
         "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a"
       );
       warningSound.play();
     }
   }
+
   return (
     <>
       {/* <ToastContainer/> */}
@@ -113,4 +118,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default BankerSignup;

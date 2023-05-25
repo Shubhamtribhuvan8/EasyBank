@@ -2,60 +2,59 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
-import TextField from "@mui/material/TextField";
 import { toast } from "react-toastify";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-function Signup() {
+import PersonIcon from "@mui/icons-material/Person";
+import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
+import BankerSignup from "./BankerSignup";
+
+function BankerLogin() {
   const [show, setShow] = useState(false);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handlemeailchange = (event) => {
+  const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const handlepasswordchange = (event) => {
+  const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
+
   async function handleSubmit(event) {
     event.preventDefault();
     const data = {
-      name: name,
       email: email,
       password: password,
     };
-
-    if (!email.endsWith("@gmail.com")) {
-      toast.error("Only Gmail accounts are allowed for registration!");
-      return;
-    }
-
     try {
-      await axios.post("http://localhost:8080/bank/register", data);
-      toast.success("Registered!");
-      const successs = new Audio(
+      let tokens = await axios.post("http://localhost:8080/bank/login", data);
+      localStorage.setItem("papa", tokens.data.user.token);
+      const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
       );
-      successs.play();
+      setTimeout(() => {
+        navigate("/alltransactions");
+      }, 5000);
+      successSound.play();
+      toast.success("Welcome!");
     } catch (error) {
-      toast.error("Registration failed!");
+      toast.error("Wrong Credentials!");
       const warningSound = new Audio(
         "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a"
       );
       warningSound.play();
     }
   }
+
   return (
     <>
-      {/* <ToastContainer/> */}
-      <Button variant="white" onClick={() => setShow(true)}>
-        <AddCircleOutlineIcon size="small" />
+      <h1>Banker Login</h1>
+      <Button variant="dark" onClick={() => setShow(true)}>
+        <PersonIcon />
       </Button>
+
       <Modal
         show={show}
         onHide={() => setShow(false)}
@@ -67,7 +66,7 @@ function Signup() {
             id="example-custom-modal-styling-title"
             style={{ textAlign: "center" }}
           >
-            Create a Account in EasyBank
+            Banker Login
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -75,27 +74,18 @@ function Signup() {
             <TextField
               required
               type="text"
-              value={name}
-              onChange={handleNameChange}
-              placeholder="Name"
-              style={{ width: "345px" }}
-            />
-            <br /> <br />
-            <TextField
-              required
-              type="text"
               value={email}
-              onChange={handlemeailchange}
-              placeholder="Email"
+              onChange={handleEmailChange}
+              placeholder="johndoe@yahoo.com"
               style={{ width: "345px" }}
             />
             <br /> <br />
             <TextField
               required
-              type="text"
+              type="password"
               value={password}
-              onChange={handlepasswordchange}
-              placeholder="Password"
+              onChange={handlePasswordChange}
+              placeholder="12345"
               style={{ width: "345px" }}
             />
             <br /> <br />
@@ -104,13 +94,16 @@ function Signup() {
               id="button-addon2"
               type="submit"
             >
-              Signup
+              Banker Login
             </Button>
           </form>
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Create Account
+          <BankerSignup />
         </Modal.Body>
       </Modal>
     </>
   );
 }
 
-export default Signup;
+export default BankerLogin;

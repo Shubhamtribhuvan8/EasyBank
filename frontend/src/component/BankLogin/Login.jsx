@@ -26,6 +26,12 @@ function Login() {
       email: email,
       password: password,
     };
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@gmail.com$/;
+    if (!emailRegex.test(email)) {
+      toast.error("Invalid Email!");
+      return;
+    }
+
     try {
       let tokens = await axios.post("http://localhost:8080/bank/login", data);
       localStorage.setItem("papa", tokens.data.user.token);
