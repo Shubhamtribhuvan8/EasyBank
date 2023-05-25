@@ -7,10 +7,8 @@ import { toast } from "react-toastify";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 function Signup() {
   const [show, setShow] = useState(false);
-
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [gender, setGender] = useState("");
   const [password, setPassword] = useState("");
 
   const handleNameChange = (event) => {
@@ -19,10 +17,6 @@ function Signup() {
 
   const handlemeailchange = (event) => {
     setEmail(event.target.value);
-  };
-
-  const handlegenderchange = (event) => {
-    setGender(event.target.value);
   };
 
   const handlepasswordchange = (event) => {
@@ -88,15 +82,6 @@ function Signup() {
               value={email}
               onChange={handlemeailchange}
               placeholder="Email"
-              style={{ width: "345px" }}
-            />
-            <br /> <br />
-            <TextField
-              required
-              type="text"
-              value={gender}
-              onChange={handlegenderchange}
-              placeholder="Gender"
               style={{ width: "345px" }}
             />
             <br /> <br />

@@ -6,10 +6,12 @@ import { toast } from "react-toastify";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import Signup from "./Signup";
+import { useNavigate } from "react-router-dom";
 function Login() {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
   const handlemeailchange = (event) => {
     setEmail(event.target.value);
   };
@@ -30,6 +32,9 @@ function Login() {
       const successs = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
       );
+      setTimeout(() => {
+        navigate("/transactions");
+      }, 5000);
       successs.play();
       toast.success("Welcome!");
     } catch (error) {
