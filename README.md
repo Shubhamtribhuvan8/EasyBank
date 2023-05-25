@@ -10,3 +10,94 @@
 ![5](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/bc151047-9d86-435c-8751-ceb9ca27852a)
 
 # Easy Bank (Banking Application)
+# Description
+The Bank Database consists of two tables, namely Users and Accounts. It is designed to handle customer and banker interactions for a banking system. The Users table stores information about all users, including bankers and customers, while the Accounts table keeps track of cash deposits and withdrawals.
+
+# Features
+
+The Bank Database provides the following features:
+# 1)Customer Login
+
+-Login Page: Users can log in using their username/email and password.
+
+-Access Token: An access token is generated upon login, which is used for authorization in subsequent API requests.
+
+# 2)Transactions Page
+
+-View Transactions: Customers can view their transaction records.
+
+-Deposit and Withdraw: Customers can deposit or withdraw cash from their accounts.
+
+-Available Balance: The popup shows the available balance before making a deposit or withdrawal.
+
+-Validation: If the withdrawal amount exceeds the available balance, an "Insufficient Funds" message is displayed.
+
+# 3)Banker Login
+
+-Accounts Page: Bankers can view all customer accounts.
+
+-Transaction Details: Bankers can click on a specific user to view their transaction history.
+
+# Technology Used
+The Bank Database is built using the MVC (Model-View-Controller) architecture. The technology stack includes:
+
+-Database: `MangoDB database management system`.
+
+-Backend Framework: `Node.js` with `Express.js` for handling API requests.
+
+-Frontend Framework: `React` for building the user interface.
+
+-UI Library: `Material-UI` for designing responsive and intuitive UI components.
+
+-Authentication: `JSON Web Tokens (JWT)` for secure user authentication and authorization.
+
+-API Testing: Tools like `Postman` can be used to test the API endpoints.```
+
+# Setup Instructions
+To set up and run the Bank Database application, follow these steps:
+
+-Install Node.js: Make sure you have Node.js installed on your system. You can download it from the official website: 
+https://nodejs.org/
+
+# Set up the Backend:
+Clone the repository containing the backend code.
+
+Navigate to the backend directory in your terminal.
+
+Install the dependencies by running the command: `npm install`
+
+Configure the database connection by updating the database credentials in the configuration file.
+
+Start the backend server by running the command: `npm start`
+
+# Set up the Frontend:
+Clone the repository containing the frontend code.
+
+Navigate to the frontend directory in your terminal.
+
+Install the dependencies by running the command: `npm install`
+
+Update the API endpoint in the frontend code to match the backend server's URL.
+
+Start the frontend development server by running the command: `npm start`
+
+# Access the Application:
+Open a web browser and visit the specified URL (usually `http://localhost:3000`) to access the Bank Database application.
+
+The login page will be displayed, allowing users to log in and access the available features.
+
+Please note that the setup instructions may vary depending on your specific environment and requirements.
+
+Future Enhancements
+
+#The Bank Database can be further enhanced with the following features:
+
+-User Registration: Add a user registration process to allow customers to create new accounts.
+
+-Password Encryption: Implement password encryption techniques, such as bcrypt, for secure storage of user passwords.
+
+-Account Management: Allow customers to manage their account information, such as updating personal details and changing passwords.
+
+-Account Statements: Provide customers with the ability to generate and download account statements for a specified period.
+
+-Advanced Authorization: Implement role-based access control (RBAC) to manage different levels
