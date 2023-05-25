@@ -35,18 +35,11 @@ export default function Alltransaction() {
       </Button>
       {data.map((transaction) => (
         <div key={transaction._id}>
-          <p>Transaction ID: {transaction._id}</p>
-          <p>Name: {transaction.name}</p>
-          <Link
-            to="/transaction-details/"
-            onClick={() => {
-              const transactionId = transaction._id;
-              navigate("/transaction-details/" + transactionId);
-            }}
-          >
-            <Button variant="outlined">Details</Button>
+          <Link to={`/transaction-details/${transaction._id}`}>
+            <Button variant="outlined">
+              <p>Name: {transaction.name}</p>
+            </Button>
           </Link>
-          {/* <p>Amount: {transaction.balance}.00 Rs</p> */}
           <hr />
         </div>
       ))}

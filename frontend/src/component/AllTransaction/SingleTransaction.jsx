@@ -1,30 +1,18 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 export default function SingleTransaction() {
   const [data, setData] = useState([]);
-  const [transactionId, setTransactionId] = useState("");
-
+  const { transactionId } = useParams();
   useEffect(() => {
-    const query = new URLSearchParams(window.location.search);
-    setTransactionId(query.get("transactionId"));
-  }, []);
-
-  useEffect(() => {
-    if (!transactionId) {
-      return;
-    }
-
-    axios
-      .get(`http://localhost:8080/transaction/${transactionId}`)
-      .then((response) => {
-        setData(response.data);
-        console.log(response.data);
-      }); // .catch((error) => {
-    //   console.log(error);
-    // });
+    fetch(`http://localhost:8080/transaction-details/${transactionId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setData(data);
+      });
   }, [transactionId]);
   const navigate = useNavigate();
   const Homepage = () => {
