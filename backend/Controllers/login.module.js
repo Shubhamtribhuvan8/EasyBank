@@ -63,7 +63,7 @@ function generateToken(payload) {
 }
 
 async function getUser(email) {
-  let user = await User.findAll({ email });
+  let user = await User.findOne({ email });
   if (!user) {
     throw new Error("User not found");
   }

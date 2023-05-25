@@ -21,7 +21,7 @@ LoginRouter.post("/register", async (req, res) => {
 });
 LoginRouter.get("/getUser", async (req, res) => {
   try {
-    let { email } = req.query;
+    let email = req.query.email;
     let user = await getUser(email);
     console.log(user);
     res.send(user);
@@ -41,7 +41,7 @@ LoginRouter.post("/login", async (req, res) => {
       user,
     });
   } catch (error) {
-    console.log(error);
+    console.log(error + "Please check Login Crediantials");
     res.status(500).send({
       error: error,
     });
