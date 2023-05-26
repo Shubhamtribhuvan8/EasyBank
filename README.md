@@ -61,7 +61,7 @@ The Bank Database is built using the MVC (Model-View-Controller) architecture. T
 
 -Frontend Framework: `React` for building the user interface.
 
--UI Library: `Material-UI` for designing responsive and intuitive UI components.
+-UI Library: `Material-UI` and `React-Boostrap` for designing responsive and intuitive UI components.
 
 -Authentication: `JSON Web Tokens (JWT)` for secure user authentication and authorization.
 
