@@ -5,6 +5,14 @@
 ## What it is ?
 ![1](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/405fc625-ed28-419b-8180-e69bed8c37ff)
 ![2](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/54706f43-8102-42dd-8c4f-a72d09e55ca1)
+# How it Works?
+# 1) Customer Login:-
+In Easy Bank, there are two login tabs: one for customers and one for bankers. For customer login, you need to create an account and then login. The email ID should end with `@gmail.com`.
+
+# 2) Banker Login:-
+In the second tab, banker login, you need to create an account with an email ID that ends with `yahoo.com`. Once created, you can access all the transactions of the customers. For trial purposes, 
+you can use the following banker login credentials: ID: `johndoe@yahoo.com` and password: `12345`.
+
 ![3](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/3c0127ed-ec27-4bb0-8f69-5145aab81890)
 ![4](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/a54f07df-124b-4643-a145-2696b43f7c34)
 ![5](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/bc151047-9d86-435c-8751-ceb9ca27852a)
@@ -60,20 +68,20 @@ To set up and run the Bank Database application, follow these steps:
 https://nodejs.org/
 
 # Set up the Backend:
-Clone the repository containing the backend code.
+Clone the repository `https://github.com/Shubhamtribhuvan8/EasyBank.git` containing the backend code.
 
-Navigate to the backend directory in your terminal.
+Navigate to the backend directory in your terminal `cd backend`.
 
 Install the dependencies by running the command: `npm install`
 
 Configure the database connection by updating the database credentials in the configuration file.
 
-Start the backend server by running the command: `npm start`
+Start the backend server by running the command: `npm start or nodemon`
 
 # Set up the Frontend:
-Clone the repository containing the frontend code.
+Clone the repository `https://github.com/Shubhamtribhuvan8/EasyBank.git` containing the frontend code.
 
-Navigate to the frontend directory in your terminal.
+Navigate to the frontend directory in your terminal `cd frontend`.
 
 Install the dependencies by running the command: `npm install`
 
@@ -88,16 +96,16 @@ The login page will be displayed, allowing users to log in and access the availa
 
 Please note that the setup instructions may vary depending on your specific environment and requirements.
 
-Future Enhancements
+# Future Enhancements
 
 #The Bank Database can be further enhanced with the following features:
 
--User Registration: Add a user registration process to allow customers to create new accounts.
+1) User Registration: Add a user registration process to allow customers to create new accounts.
 
--Password Encryption: Implement password encryption techniques, such as bcrypt, for secure storage of user passwords.
+2) Password Encryption: Implement password encryption techniques, such as bcrypt, for secure storage of user passwords.
 
--Account Management: Allow customers to manage their account information, such as updating personal details and changing passwords.
+3) Account Management: Allow customers to manage their account information, such as updating personal details and changing passwords.
 
--Account Statements: Provide customers with the ability to generate and download account statements for a specified period.
+4) Account Statements: Provide customers with the ability to generate and download account statements for a specified period.
 
--Advanced Authorization: Implement role-based access control (RBAC) to manage different levels
+5) Advanced Authorization: Implement role-based access control (RBAC) to manage different levels
