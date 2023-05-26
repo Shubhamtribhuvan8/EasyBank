@@ -102,16 +102,3 @@ The login page will be displayed, allowing users to log in and access the availa
 
 Please note that the setup instructions may vary depending on your specific environment and requirements.
 
-# Future Enhancements
-
-#The Bank Database can be further enhanced with the following features:
-
-1) User Registration: Add a user registration process to allow customers to create new accounts.
-
-2) Password Encryption: Implement password encryption techniques, such as bcrypt, for secure storage of user passwords.
-
-3) Account Management: Allow customers to manage their account information, such as updating personal details and changing passwords.
-
-4) Account Statements: Provide customers with the ability to generate and download account statements for a specified period.
-
-5) Advanced Authorization: Implement role-based access control (RBAC) to manage different levels
