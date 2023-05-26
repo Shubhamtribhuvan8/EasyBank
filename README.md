@@ -10,7 +10,7 @@
 In Easy Bank, there are two login tabs: one for customers and one for bankers. For customer login, you need to create an account and then login. The email ID should end with `@gmail.com`.
 
 # 2) Banker Login:-
-In the second tab, banker login, you need to create an account with an email ID that ends with `yahoo.com`. Once created, you can access all the transactions of the customers. For trial purposes, 
+In the second tab, banker login, you need to create an account with an email ID that ends with `@yahoo.com`. Once created, you can access all the transactions of the customers. For trial purposes, 
 you can use the following banker login credentials: ID: `johndoe@yahoo.com` and password: `12345`.
 
 ![3](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/3c0127ed-ec27-4bb0-8f69-5145aab81890)
