@@ -17,7 +17,7 @@ you can use the following banker login credentials: ID: `johndoe@yahoo.com` and 
 ![4](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/a54f07df-124b-4643-a145-2696b43f7c34)
 ![5](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/bc151047-9d86-435c-8751-ceb9ca27852a)
 
-# MangoDB Database Users and Accounts
+# 3) MangoDB Database Users and Accounts
 ![6](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/7379326d-138c-4974-95b0-4d67df596a3d)
 ![7](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/a2adf2e9-805c-479e-9d54-4e3b496c9353)
 ![8](https://github.com/Shubhamtribhuvan8/EasyBank/assets/106821254/3deb16c3-ef47-4fe4-bd86-3ec24ee98778)
