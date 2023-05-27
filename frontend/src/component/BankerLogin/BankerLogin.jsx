@@ -7,11 +7,13 @@ import PersonIcon from "@mui/icons-material/Person";
 import TextField from "@mui/material/TextField";
 import { useNavigate } from "react-router-dom";
 import BankerSignup from "./BankerSignup";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function BankerLogin() {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleEmailChange = (event) => {
@@ -29,6 +31,7 @@ function BankerLogin() {
       password: password,
     };
     try {
+      setLoading(true); // Start loading
       let tokens = await axios.post(
         "https://precious-fashion-dog.cyclic.app/bank/login",
         data
@@ -48,6 +51,8 @@ function BankerLogin() {
         "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a"
       );
       warningSound.play();
+    } finally {
+      setLoading(false); // Stop loading
     }
   }
 
@@ -100,8 +105,9 @@ function BankerLogin() {
               variant="outline-secondary"
               id="button-addon2"
               type="submit"
+              disabled={loading}
             >
-              Banker Login
+              {loading ? <CircularProgress size={20} /> : "Banker Login"}
             </Button>
           </form>
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;

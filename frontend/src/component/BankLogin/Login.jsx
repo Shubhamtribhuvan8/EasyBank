@@ -7,16 +7,20 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import TextField from "@mui/material/TextField";
 import Signup from "./Signup";
 import { useNavigate } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
+
 function Login() {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const handlemeailchange = (event) => {
+
+  const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
 
-  const handlepasswordchange = (event) => {
+  const handlePasswordChange = (event) => {
     setPassword(event.target.value);
   };
 
@@ -31,19 +35,21 @@ function Login() {
       toast.error("Invalid Email!");
       return;
     }
+
     try {
+      setLoading(true); // Start loading
       let tokens = await axios.post(
         "https://precious-fashion-dog.cyclic.app/bank/login",
         data
       );
       localStorage.setItem("papa", tokens.data.user.token);
-      const successs = new Audio(
+      const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
       );
       setTimeout(() => {
         navigate("/transactions");
       }, 5000);
-      successs.play();
+      successSound.play();
       toast.success("Welcome!");
     } catch (error) {
       toast.error("Wrong Credentials!");
@@ -51,8 +57,11 @@ function Login() {
         "http://commondatastorage.googleapis.com/codeskulptor-assets/week7-button.m4a"
       );
       warningSound.play();
+    } finally {
+      setLoading(false); // Stop loading
     }
   }
+
   return (
     <>
       <Button
@@ -84,16 +93,16 @@ function Login() {
               required
               type="text"
               value={email}
-              onChange={handlemeailchange}
+              onChange={handleEmailChange}
               placeholder="Email"
               style={{ width: "345px" }}
             />
             <br /> <br />
             <TextField
               required
-              type="text"
+              type="password"
               value={password}
-              onChange={handlepasswordchange}
+              onChange={handlePasswordChange}
               placeholder="Password"
               style={{ width: "345px" }}
             />
@@ -102,8 +111,9 @@ function Login() {
               variant="outline-secondary"
               id="button-addon2"
               type="submit"
+              disabled={loading}
             >
-              Login
+              {loading ? <CircularProgress size={20} /> : "Login"}
             </Button>
           </form>
           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
