@@ -89,7 +89,7 @@ Clone the repository `https://github.com/Shubhamtribhuvan8/EasyBank.git` contain
 
 Navigate to the frontend directory in your terminal `cd frontend`.
 
-Install the dependencies by running the command: `npm install`
+Install the dependencies by running the command: `npm install --legacy-peer-deps`
 
 Update the API endpoint in the frontend code to match the backend server's URL.
 
