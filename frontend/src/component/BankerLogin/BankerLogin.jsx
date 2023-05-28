@@ -31,9 +31,9 @@ function BankerLogin() {
       password: password,
     };
     try {
-      setLoading(true);
+      setLoading(true); // Start loading
       let tokens = await axios.post(
-        `${process.env.REACT_APP_API}/bank/login`,
+        "https://precious-fashion-dog.cyclic.app/bank/login",
         data
       );
       localStorage.setItem("papa", tokens.data.user.token);

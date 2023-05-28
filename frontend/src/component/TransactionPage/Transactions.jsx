@@ -18,7 +18,7 @@ export default function TransactionPage() {
     const token = localStorage.getItem("papa");
     if (token) {
       axios
-        .post(`${process.env.REACT_APP_API}/bank/verify`, { token })
+        .post("https://precious-fashion-dog.cyclic.app/bank/verify", { token })
         .then((response) => {
           const user = response.data.user;
           setUser(user);
@@ -32,7 +32,7 @@ export default function TransactionPage() {
   useEffect(() => {
     if (user) {
       axios
-        .get(`${process.env.REACT_APP_API}/account/details`)
+        .get("https://precious-fashion-dog.cyclic.app/account/details")
         .then((response) => {
           const accountDetails = response.data;
           const currentUserAccount = accountDetails.find(
@@ -60,7 +60,7 @@ export default function TransactionPage() {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_API}/account/deposit`,
+        "https://precious-fashion-dog.cyclic.app/account/deposit",
         {
           name: user.name,
           amount: depositAmount,

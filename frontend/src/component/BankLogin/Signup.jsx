@@ -40,8 +40,11 @@ function Signup() {
     }
 
     try {
-      setLoading(true);
-      await axios.post(`${process.env.REACT_APP_API}/bank/register`, data);
+      setLoading(true); // Start loading
+      await axios.post(
+        "https://precious-fashion-dog.cyclic.app/bank/register",
+        data
+      );
       toast.success("Registered!");
       const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
@@ -54,7 +57,7 @@ function Signup() {
       );
       warningSound.play();
     } finally {
-      setLoading(false);
+      setLoading(false); // Stop loading
     }
   }
 

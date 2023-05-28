@@ -11,7 +11,7 @@ export default function AllTransaction(props) {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API}/account/details`)
+      .get("https://precious-fashion-dog.cyclic.app/account/details")
       .then((response) => {
         setData(response.data);
         setLoading(false);
