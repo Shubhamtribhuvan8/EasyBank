@@ -39,7 +39,7 @@ export default function SingleTransaction() {
           textAlign: "initial",
         }}
       >
-        <ul>
+        <ul style={{ fontFamily: "serif" }}>
           <p>Transaction ID: {data._id}</p>
           <p>Account Holder Name: {data.name}</p>
           <p>Account Balance: {data.balance}.00 Rs</p>

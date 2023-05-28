@@ -1,11 +1,18 @@
+/* eslint-disable no-dupe-keys */
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Button } from "@mui/material";
+import { Button, TextField, CircularProgress } from "@mui/material";
 import Logout from "../BankLogin/Logout";
+
 export default function TransactionPage() {
   const [user, setUser] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(null);
+  const [depositAmount, setDepositAmount] = useState("");
+  const [withdrawAmount, setWithdrawAmount] = useState("");
+  const [balanceAfterDeposit, setBalanceAfterDeposit] = useState(null);
+  const [isDepositing, setIsDepositing] = useState(false);
+  const [isWithdrawing, setIsWithdrawing] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("papa");
@@ -28,18 +35,13 @@ export default function TransactionPage() {
         .get("https://precious-fashion-dog.cyclic.app/account/details")
         .then((response) => {
           const accountDetails = response.data;
-          let isUserFound = false;
-          for (let i = 0; i < accountDetails.length; i++) {
-            if (user.name === accountDetails[i].name) {
-              setData(accountDetails[i]);
-              // console.log(accountDetails[i]);
-              isUserFound = true;
-              break;
-            }
-          }
-
-          if (!isUserFound) {
-            console.log("User not found");
+          const currentUserAccount = accountDetails.find(
+            (account) => account.name === user.name
+          );
+          if (currentUserAccount) {
+            setData(currentUserAccount);
+          } else {
+            console.log("User account not found");
           }
         })
         .catch((error) => {
@@ -47,11 +49,15 @@ export default function TransactionPage() {
         });
     }
   }, [user]);
-  const [depositAmount, setDepositAmount] = useState("");
-  const [withdrawAmount, setWithdrawAmount] = useState("");
-  // eslint-disable-next-line no-unused-vars
-  const [balanced, setBalance] = useState([]);
+
   const handleDeposit = async () => {
+    if (!depositAmount || isNaN(depositAmount) || depositAmount <= 0) {
+      toast.error("Please enter a valid deposit amount.");
+      return;
+    }
+
+    setIsDepositing(true);
+
     try {
       const response = await axios.post(
         "https://precious-fashion-dog.cyclic.app/account/deposit",
@@ -60,15 +66,26 @@ export default function TransactionPage() {
           amount: depositAmount,
         }
       );
-      setBalance(response.data.balance);
-      setData(response.data.balance);
-      toast.success("Deposit Done!");
+      setData(response.data);
+      setBalanceAfterDeposit(response.data.balance);
+      toast.success("Deposit successful!");
+      setDepositAmount("");
     } catch (error) {
       console.error(error);
-      toast.error("Something went Wrong!");
+      toast.error("Something went wrong. Please try again.");
     }
+
+    setIsDepositing(false);
   };
+
   const handleWithdraw = async () => {
+    if (!withdrawAmount || isNaN(withdrawAmount) || withdrawAmount <= 0) {
+      toast.error("Please enter a valid withdrawal amount.");
+      return;
+    }
+
+    setIsWithdrawing(true);
+
     try {
       const response = await axios.post(
         "https://precious-fashion-dog.cyclic.app/account/withdraw",
@@ -77,12 +94,17 @@ export default function TransactionPage() {
           amount: withdrawAmount,
         }
       );
-      setBalance(response.data.balance);
-      toast.success("Withdraw Done!");
+      setData(response.data);
+      toast.success("Withdrawal successful!");
+      setWithdrawAmount("");
     } catch (error) {
       console.error(error);
-      toast.error("Insufficient funds!");
+      toast.error(
+        "Insufficient funds. Please enter a valid withdrawal amount."
+      );
     }
+
+    setIsWithdrawing(false);
   };
 
   return (
@@ -97,22 +119,33 @@ export default function TransactionPage() {
             alignItems: "center",
           }}
         >
-          <h5>Account Holder Name: {user.name}</h5>
-          <h5>Account Holder Email: {user.email}</h5>
+          <h5 style={{ textDecoration: "underline" }}>
+            Account Holder Name: {user.name}
+          </h5>
+          <h5 style={{ textDecoration: "underline" }}>
+            Account Holder Email: {user.email}
+          </h5>
         </div>
       )}
+      <br />
       {data && (
         <div
           style={{
             boxShadow: "0 0 10px black",
             padding: "10px",
             margin: "10px",
+            width: "28rem",
+            margin: "0 auto",
+            backgroundColor: "floralwhite",
           }}
         >
           <h4>Balance: {data.balance}.00 Rs</h4>
-          <h4>After Deposit: {balanced}.00 Rs</h4>
+          {balanceAfterDeposit && (
+            <h4>After Deposit: {balanceAfterDeposit}.00 Rs</h4>
+          )}
         </div>
       )}
+      <br />
       <div
         style={{
           display: "flex",
@@ -123,8 +156,7 @@ export default function TransactionPage() {
       >
         <div>
           <h4>Deposit Amount:</h4>
-          <input
-            style={{ width: "11rem", fontSize: "21px" }}
+          <TextField
             type="number"
             id="depositAmount"
             placeholder="Deposit Amount"
@@ -132,15 +164,13 @@ export default function TransactionPage() {
             onChange={(e) => setDepositAmount(e.target.value)}
           />
           <br />
-          <Button onClick={handleDeposit} variant="contained">
-            Deposit
+          <Button onClick={handleDeposit} variant="outlined">
+            {isDepositing ? <CircularProgress size={20} /> : "Deposit"}
           </Button>
         </div>
-        <br />
         <div>
           <h4>Withdraw Amount:</h4>
-          <input
-            style={{ width: "11rem", fontSize: "21px" }}
+          <TextField
             type="number"
             id="withdrawAmount"
             placeholder="Withdraw Amount"
@@ -148,13 +178,11 @@ export default function TransactionPage() {
             onChange={(e) => setWithdrawAmount(e.target.value)}
           />
           <br />
-          <Button onClick={handleWithdraw} variant="contained">
-            Withdraw
+          <Button onClick={handleWithdraw} variant="outlined">
+            {isWithdrawing ? <CircularProgress size={20} /> : "Withdraw"}
           </Button>
-          <br />
         </div>
       </div>
-
       <br />
       <Logout />
     </div>

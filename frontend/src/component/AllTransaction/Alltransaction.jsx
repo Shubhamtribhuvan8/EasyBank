@@ -1,21 +1,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import {
-  Button,
-  CircularProgress,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-} from "@mui/material";
+import { Button, CircularProgress, Paper } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import LazyLoad from "react-lazyload";
 
-export default function Alltransaction(props) {
+export default function AllTransaction(props) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -34,7 +24,7 @@ export default function Alltransaction(props) {
 
   const navigate = useNavigate();
 
-  const Homepage = () => {
+  const homepage = () => {
     setTimeout(() => {
       navigate("/");
     }, 3000);
@@ -44,13 +34,13 @@ export default function Alltransaction(props) {
   return (
     <div style={{ textAlign: "center" }}>
       <h1>All Transactions</h1>
-      <Button variant="contained" onClick={Homepage}>
+      <Button variant="contained" onClick={homepage}>
         Home Page
       </Button>
       {loading ? (
         <div
           style={{
-            display: "flex",
+            display: "grid",
             justifyContent: "center",
             marginTop: "50px",
           }}
@@ -58,35 +48,31 @@ export default function Alltransaction(props) {
           <CircularProgress size={100} />
         </div>
       ) : (
-        <TableContainer component={Paper} style={{ marginTop: "50px" }}>
-          <Table>
-            <TableHead>
-              <TableRow>
-                <TableCell align="center">Name</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((transaction) => (
-                <LazyLoad key={transaction._id} height={200} once>
-                  <TableRow>
-                    <TableCell align="center">
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        {transaction.name}
-                      </div>
-                    </TableCell>
-                    <TableCell align="center">
-                      <Link to={`/transaction-details/${transaction._id}`}>
-                        <Button variant="outlined">Details</Button>
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                </LazyLoad>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+        <div
+          style={{
+            display: "grid",
+            justifyContent: "center",
+            marginTop: "50px",
+            gap: "16px",
+          }}
+        >
+          {data.map((transaction) => (
+            <LazyLoad key={transaction._id} height={200} once>
+              <Paper
+                style={{
+                  width: "400px",
+                  padding: "20px",
+                  textAlign: "center",
+                }}
+              >
+                <h2 style={{ fontFamily: "serif" }}>{transaction.name}</h2>
+                <Link to={`/transaction-details/${transaction._id}`}>
+                  <Button variant="outlined">Details</Button>
+                </Link>
+              </Paper>
+            </LazyLoad>
+          ))}
+        </div>
       )}
     </div>
   );
