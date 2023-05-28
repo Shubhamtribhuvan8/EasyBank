@@ -1,14 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { createPortal } from "react-dom"; // Import createPortal from react-dom
 import "./index.css";
 import App from "./App";
-// import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-// const root = ReactDOM.createRoot(document.getElementById("root"));
-ReactDOM.render(
+
+const portalRoot = document.getElementById("portal-root"); // Define a root element for the portal
+
+const AppWithPortal = (
   <BrowserRouter>
     <App />
-  </BrowserRouter>,
+  </BrowserRouter>
+);
+
+ReactDOM.render(
+  <React.StrictMode>
+    {/* Render the portal using createPortal */}
+    {createPortal(AppWithPortal, portalRoot)}
+  </React.StrictMode>,
   document.getElementById("root")
 );
