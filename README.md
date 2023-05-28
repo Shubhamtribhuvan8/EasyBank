@@ -1,5 +1,5 @@
 # EasyBank
-## [Deployment Link](https://easybank-rouge.vercel.app)
+## <a href="https://docs.google.com/document/d/1g6cPsM6Va_nKPhX_QUADi9T18V1fWRfoinu3PfWyGXs/edit?usp=sharing" target="_blank">Deployment Link</a>
 ## [Implementation  Video](https://drive.google.com/file/d/1g5gyY7FDS1hF1Ya_o1Beieie38-hOOJx/view?usp=sharing)
 
 ## What it is ?
@@ -89,7 +89,7 @@ Clone the repository `https://github.com/Shubhamtribhuvan8/EasyBank.git` contain
 
 Navigate to the frontend directory in your terminal `cd frontend`.
 
-Install the dependencies by running the command: `npm install`
+Install the dependencies by running the command: `npm install --legacy-peer-deps`
 
 Update the API endpoint in the frontend code to match the backend server's URL.
 
