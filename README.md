@@ -1,5 +1,5 @@
 # EasyBank
-## [Deployment Link](https://easybank-rouge.vercel.app)
+## [Deployment Link](https://docs.google.com/document/d/1g6cPsM6Va_nKPhX_QUADi9T18V1fWRfoinu3PfWyGXs/edit?usp=sharing)
 ## [Implementation  Video](https://drive.google.com/file/d/1g5gyY7FDS1hF1Ya_o1Beieie38-hOOJx/view?usp=sharing)
 
 ## What it is ?
