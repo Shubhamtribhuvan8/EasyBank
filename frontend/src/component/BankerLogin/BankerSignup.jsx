@@ -12,7 +12,7 @@ function BankerSignup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false); // New loading state
+  const [loading, setLoading] = useState(false);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -45,10 +45,7 @@ function BankerSignup() {
 
     try {
       setLoading(true); // Start loading
-      await axios.post(
-        "https://precious-fashion-dog.cyclic.app/bank/register",
-        data
-      );
+      await axios.post(`${process.env.REACT_APP_API}/register`, data);
       toast.success("Registered!");
       const successSound = new Audio(
         "http://codeskulptor-demos.commondatastorage.googleapis.com/descent/gotitem.mp3"
